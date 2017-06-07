@@ -8,19 +8,30 @@ using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using ECommerce.ProductCatalog.Model;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 
 namespace ECommerce.ProductCatalog
 {
     /// <summary>
     /// An instance of this class is created for each service replica by the Service Fabric runtime.
     /// </summary>
-    internal sealed class ProductCatalog : StatefulService
+    internal sealed class ProductCatalog : StatefulService, IProductCatalogService
     {
         private IProductRepository _repo;
 
         public ProductCatalog(StatefulServiceContext context)
             : base(context)
         { }
+
+        public async Task AddProduct(Product product)
+        {
+            await _repo.AddProduct(product);
+        }
+
+        public async Task<IEnumerable<Product>> GetAllProducts()
+        {
+            return await _repo.GetAllProducts();
+        }
 
         /// <summary>
         /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
@@ -31,7 +42,11 @@ namespace ECommerce.ProductCatalog
         /// <returns>A collection of listeners.</returns>
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
-            return new ServiceReplicaListener[0];
+            return new[]
+            {
+                new ServiceReplicaListener(context => this.CreateServiceRemotingListener(context))
+            };
+
         }
 
         /// <summary>
