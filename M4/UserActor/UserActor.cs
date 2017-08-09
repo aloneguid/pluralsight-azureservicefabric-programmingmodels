@@ -31,19 +31,37 @@ namespace UserActor
         {
         }
 
-        public Task AddToBasket(Guid productId, int quantity)
+        public async Task AddToBasket(Guid productId, int quantity)
         {
-            throw new NotImplementedException();
+            await StateManager.AddOrUpdateStateAsync(productId.ToString(),
+                quantity,
+                (id, oldQuantity) => oldQuantity + quantity);
         }
 
-        public Task ClearBasket()
+        public async Task ClearBasket()
         {
-            throw new NotImplementedException();
+            IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+
+            foreach (string productId in productIDs)
+            {
+                await StateManager.RemoveStateAsync(productId);
+            }
+
         }
 
-        public Task<Dictionary<Guid, int>> GetBasket()
+        public async Task<Dictionary<Guid, int>> GetBasket()
         {
-            throw new NotImplementedException();
+            var result = new Dictionary<Guid, int>();
+
+            IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+
+            foreach (string productId in productIDs)
+            {
+                int quantity = await StateManager.GetStateAsync<int>(productId);
+                result[new Guid(productId)] = quantity;
+            }
+
+            return result;
         }
     }
 }
