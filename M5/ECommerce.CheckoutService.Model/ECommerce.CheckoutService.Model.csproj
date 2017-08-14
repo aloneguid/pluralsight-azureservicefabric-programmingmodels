@@ -78,11 +78,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckoutProduct.cs" />
+    <Compile Include="CheckoutSummary.cs" />
     <Compile Include="ICheckoutService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.ProductCatalog.Model\ECommerce.ProductCatalog.Model.csproj">
+      <Project>{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}</Project>
+      <Name>ECommerce.ProductCatalog.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
