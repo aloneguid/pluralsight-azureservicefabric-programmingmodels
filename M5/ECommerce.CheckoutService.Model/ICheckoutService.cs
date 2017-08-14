@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Services.Remoting;
 
 namespace ECommerce.CheckoutService.Model
 {
-    public class Class1
+    public interface ICheckoutService : IService
     {
     }
 }
