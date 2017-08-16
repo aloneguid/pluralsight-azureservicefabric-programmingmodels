@@ -23,7 +23,7 @@ namespace ECommerce.API.Controllers
          return ToApiCheckoutSummary(summary);
       }
 
-      [Route("history")]
+      [Route("history/{userId}")]
       public async Task<IEnumerable<ApiCheckoutSummary>> GetHistory(string userId)
       {
          IEnumerable<CheckoutSummary> history = await GetCheckoutService().GetOrderHitory(userId);
