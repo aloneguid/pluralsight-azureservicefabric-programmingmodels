@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ECommerce", "ECommerce\ECommerce.sfproj", "{7F2E709B-25A5-4B20-A630-F95ED792B558}"
 EndProject
@@ -51,8 +51,8 @@ Global
 		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Release|x64.Build.0 = Release|Any CPU
 		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.ActiveCfg = Debug|x64
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.Build.0 = Debug|x64
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.Build.0 = Debug|Any CPU
 		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|x64.ActiveCfg = Release|Any CPU
@@ -86,5 +86,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DC0AA79-F348-4A16-807C-997CA46E4919}
 	EndGlobalSection
 EndGlobal
