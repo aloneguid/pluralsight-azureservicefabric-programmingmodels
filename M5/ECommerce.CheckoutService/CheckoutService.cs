@@ -29,6 +29,10 @@ namespace ECommerce.CheckoutService
 
       public async Task<CheckoutSummary> Checkout(string userId)
       {
+         var result = new CheckoutSummary();
+         result.Date = DateTime.UtcNow;
+         result.Products = new List<CheckoutProduct>();
+
          //call user actor to get the basket
          IUserActor userActor = GetUserActor(userId);
          Dictionary<Guid, int> basket = await userActor.GetBasket();
@@ -36,7 +40,26 @@ namespace ECommerce.CheckoutService
          //get catalog client
          IProductCatalogService catalogService = GetProductCatalogService();
 
-         throw new NotImplementedException();
+         //constuct CheckoutProduct items by calling to the catalog
+         foreach(KeyValuePair<Guid, int> basketLine in basket)
+         {
+            Product product = await catalogService.GetProduct(basketLine.Key);
+            var checkoutProduct = new CheckoutProduct
+            {
+               Product = product,
+               Price = product.Price,
+               Quantity = basketLine.Value
+            };
+            result.Products.Add(checkoutProduct);
+         }
+
+         //generate total price
+         result.TotalPrice = result.Products.Sum(p => p.Price);
+
+         //clear user basket
+         await userActor.ClearBasket();
+
+         return result;
       }
 
       public Task<IEnumerable<CheckoutSummary>> GetOrderHitory(string userId)
