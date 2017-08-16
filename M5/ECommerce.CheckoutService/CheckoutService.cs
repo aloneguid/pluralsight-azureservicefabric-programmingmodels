@@ -59,12 +59,43 @@ namespace ECommerce.CheckoutService
          //clear user basket
          await userActor.ClearBasket();
 
+         await AddToHistory(result);
+
          return result;
       }
 
-      public Task<IEnumerable<CheckoutSummary>> GetOrderHitory(string userId)
+      public async Task<IEnumerable<CheckoutSummary>> GetOrderHitory(string userId)
       {
-         throw new NotImplementedException();
+         var result = new List<CheckoutSummary>();
+         var history = await StateManager.GetOrAddAsync<IReliableDictionary<DateTime, CheckoutSummary>>("history");
+
+         using (var tx = StateManager.CreateTransaction())
+         {
+            var allProducts = await history.CreateEnumerableAsync(tx, EnumerationMode.Unordered);
+            using (var enumerator = allProducts.GetAsyncEnumerator())
+            {
+               while (await enumerator.MoveNextAsync(CancellationToken.None))
+               {
+                  KeyValuePair<DateTime, CheckoutSummary> current = enumerator.Current;
+
+                  result.Add(current.Value);
+               }
+            }
+         }
+
+         return result;
+      }
+
+      private async Task AddToHistory(CheckoutSummary checkout)
+      {
+         var history = await StateManager.GetOrAddAsync<IReliableDictionary<DateTime, CheckoutSummary>>("history");
+
+         using (var tx = StateManager.CreateTransaction())
+         {
+            await history.AddAsync(tx, checkout.Date, checkout);
+
+            await tx.CommitAsync();
+         }
       }
 
       private IUserActor GetUserActor(string userId)
