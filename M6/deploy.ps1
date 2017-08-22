@@ -37,8 +37,4 @@ New-ServiceFabricApplication `
     -ApplicationTypeName $ApplicationTypeName `
     -ApplicationTypeVersion $ApplicationVersion
 
-# 6. Remove application completely
-Remove-ServiceFabricApplication -ApplicationName $ApplicationInstanceName
 
-# 7. Unregister application type
-Unregister-ServiceFabricApplicationType -ApplicationTypeName $ApplicationTypeName -ApplicationTypeVersion $ApplicationVersion
