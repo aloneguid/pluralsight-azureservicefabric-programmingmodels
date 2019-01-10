@@ -4,6 +4,7 @@
     <TargetFramework>net452</TargetFramework>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
