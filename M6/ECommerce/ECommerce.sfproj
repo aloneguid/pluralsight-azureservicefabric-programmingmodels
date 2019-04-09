@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ECommerce.API\ECommerce.API.csproj" />
+    <ProjectReference Include="..\ECommerce.CheckoutService\ECommerce.CheckoutService.csproj" />
     <ProjectReference Include="..\ECommerce.ProductCatalog\ECommerce.ProductCatalog.csproj" />
     <ProjectReference Include="..\UserActor\UserActor.csproj" />
   </ItemGroup>

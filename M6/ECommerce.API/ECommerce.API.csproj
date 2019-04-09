@@ -4,6 +4,7 @@
     <TargetFramework>net452</TargetFramework>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
@@ -16,17 +17,20 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.6" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
-    <PackageReference Include="Microsoft.ServiceFabric" Version="6.0.232" />
-    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.WebListener" Version="2.8.232" />
-    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.8.232" />
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.8.232" />
-    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="2.8.232" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="6.4.624" />
+    <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="3.3.624" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.WebListener" Version="3.3.624" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.3.624" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.3.624" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.3.624" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ECommerce.CheckoutService.Model\ECommerce.CheckoutService.Model.csproj" />
     <ProjectReference Include="..\ECommerce.ProductCatalog.Model\ECommerce.ProductCatalog.Model.csproj" />
+    <ProjectReference Include="..\UserActor.Interfaces\UserActor.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

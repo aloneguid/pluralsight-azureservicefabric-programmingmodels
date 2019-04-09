@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ECommerce", "ECommerce\ECommerce.sfproj", "{7F2E709B-25A5-4B20-A630-F95ED792B558}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserActor", "UserActor\UserActor.csproj", "{E7E31E5C-9F10-410F-8F60-F6B78893A262}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserActor.Interfaces", "UserActor.Interfaces\UserActor.Interfaces.csproj", "{3CE29B23-E952-463B-B9F2-48FF61EC3F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.CheckoutService", "ECommerce.CheckoutService\ECommerce.CheckoutService.csproj", "{93C2EFA6-596F-44BF-BDD4-D614C42662D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.CheckoutService.Model", "ECommerce.CheckoutService.Model\ECommerce.CheckoutService.Model.csproj", "{B207F23C-6B4C-4849-B84F-5866DDED6025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +37,12 @@ Global
 		{CABBF5FB-94E0-4172-BBBA-C073BEFAEC76}.Release|x64.Build.0 = Release|x64
 		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Debug|x64.ActiveCfg = Debug|x64
 		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Debug|x64.Build.0 = Debug|x64
-		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Release|x64.ActiveCfg = Release|Any CPU
-		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Release|x64.Build.0 = Release|Any CPU
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.Build.0 = Debug|Any CPU
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|x64.ActiveCfg = Release|Any CPU
-		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|x64.Build.0 = Release|Any CPU
+		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Release|x64.ActiveCfg = Release|x64
+		{D5286FC8-E5E2-4F4C-9211-4956ABA25D66}.Release|x64.Build.0 = Release|x64
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.ActiveCfg = Debug|x64
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Debug|x64.Build.0 = Debug|x64
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|x64.ActiveCfg = Release|x64
+		{55CC1499-7FF7-41DE-B23D-058A286554E0}.Release|x64.Build.0 = Release|x64
 		{E7E31E5C-9F10-410F-8F60-F6B78893A262}.Debug|x64.ActiveCfg = Debug|x64
 		{E7E31E5C-9F10-410F-8F60-F6B78893A262}.Debug|x64.Build.0 = Debug|x64
 		{E7E31E5C-9F10-410F-8F60-F6B78893A262}.Release|x64.ActiveCfg = Release|x64
@@ -47,11 +51,19 @@ Global
 		{3CE29B23-E952-463B-B9F2-48FF61EC3F2E}.Debug|x64.Build.0 = Debug|x64
 		{3CE29B23-E952-463B-B9F2-48FF61EC3F2E}.Release|x64.ActiveCfg = Release|x64
 		{3CE29B23-E952-463B-B9F2-48FF61EC3F2E}.Release|x64.Build.0 = Release|x64
+		{93C2EFA6-596F-44BF-BDD4-D614C42662D2}.Debug|x64.ActiveCfg = Debug|x64
+		{93C2EFA6-596F-44BF-BDD4-D614C42662D2}.Debug|x64.Build.0 = Debug|x64
+		{93C2EFA6-596F-44BF-BDD4-D614C42662D2}.Release|x64.ActiveCfg = Release|x64
+		{93C2EFA6-596F-44BF-BDD4-D614C42662D2}.Release|x64.Build.0 = Release|x64
+		{B207F23C-6B4C-4849-B84F-5866DDED6025}.Debug|x64.ActiveCfg = Debug|x64
+		{B207F23C-6B4C-4849-B84F-5866DDED6025}.Debug|x64.Build.0 = Debug|x64
+		{B207F23C-6B4C-4849-B84F-5866DDED6025}.Release|x64.ActiveCfg = Release|x64
+		{B207F23C-6B4C-4849-B84F-5866DDED6025}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F84CA118-9D9F-4825-87A7-9DE968552766}
+		SolutionGuid = {0DC0AA79-F348-4A16-807C-997CA46E4919}
 	EndGlobalSection
 EndGlobal
