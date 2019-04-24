@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="ECommerce.ProductCatalogPkg"
                  Version="1.0.0"
                  xmlns="http://schemas.microsoft.com/2011/01/fabric"
@@ -7,7 +7,7 @@
   <ServiceTypes>
     <!-- This is the name of your ServiceType. 
          This name must match the string used in RegisterServiceType call in Program.cs. -->
-    <StatefulServiceType ServiceTypeName="ECommerce.ProductCatalogType" HasPersistedState="true" />
+    <StatefulServiceType ServiceTypeName="ProductCatalogType" HasPersistedState="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->

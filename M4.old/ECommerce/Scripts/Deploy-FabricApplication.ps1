@@ -98,10 +98,7 @@ Param
     $SecurityToken,
 
     [int]
-    $CopyPackageTimeoutSec,
-
-    [int]
-    $RegisterApplicationTypeTimeoutSec
+    $CopyPackageTimeoutSec
 )
 
 function Read-XmlElementAsHashtable
@@ -143,7 +140,6 @@ function Read-PublishProfile
     $publishProfile.ClusterConnectionParameters = Read-XmlElementAsHashtable $publishProfileXml.PublishProfile.Item("ClusterConnectionParameters")
     $publishProfile.UpgradeDeployment = Read-XmlElementAsHashtable $publishProfileXml.PublishProfile.Item("UpgradeDeployment")
     $publishProfile.CopyPackageParameters = Read-XmlElementAsHashtable $publishProfileXml.PublishProfile.Item("CopyPackageParameters")
-    $publishProfile.RegisterApplicationParameters = Read-XmlElementAsHashtable $publishProfileXml.PublishProfile.Item("RegisterApplicationParameters")
 
     if ($publishProfileXml.PublishProfile.Item("UpgradeDeployment"))
     {
@@ -218,21 +214,10 @@ if ($publishProfile.CopyPackageParameters.CompressPackage)
     $PublishParameters['CompressPackage'] = $publishProfile.CopyPackageParameters.CompressPackage
 }
 
-if ($publishProfile.RegisterApplicationParameters.RegisterApplicationTypeTimeoutSec)
-{
-    $PublishParameters['RegisterApplicationTypeTimeoutSec'] = $publishProfile.RegisterApplicationParameters.RegisterApplicationTypeTimeoutSec
-}
-
 # CopyPackageTimeoutSec parameter overrides the value from the publish profile
 if ($CopyPackageTimeoutSec)
 {
     $PublishParameters['CopyPackageTimeoutSec'] = $CopyPackageTimeoutSec
-}
-
-# RegisterApplicationTypeTimeoutSec parameter overrides the value from the publish profile
-if ($RegisterApplicationTypeTimeoutSec)
-{
-    $PublishParameters['RegisterApplicationTypeTimeoutSec'] = $RegisterApplicationTypeTimeoutSec
 }
 
 if ($IsUpgrade)
