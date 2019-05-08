@@ -5,5 +5,8 @@
     <Parameter Name="ProductCatalog_PartitionCount" Value="1" />
     <Parameter Name="ProductCatalog_MinReplicaSetSize" Value="1" />
     <Parameter Name="ProductCatalog_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="UserActorService_PartitionCount" Value="1" />
+    <Parameter Name="UserActorService_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="UserActorService_MinReplicaSetSize" Value="1" />
   </Parameters>
 </Application>

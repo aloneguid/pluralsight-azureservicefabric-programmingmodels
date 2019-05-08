@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Fabric;
@@ -9,7 +9,7 @@ using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace ECommerce.API
 {
-    [EventSource(Name = "MyCompany-ECommerce-API")]
+    [EventSource(Name = "MyCompany-ECommerce-ECommerce.API")]
     internal sealed class ServiceEventSource : EventSource
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();
