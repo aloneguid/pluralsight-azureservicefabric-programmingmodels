@@ -16,17 +16,10 @@ namespace UserActor.Interfaces
    /// </summary>
    public interface IUserActor : IActor
    {
-      /// <summary>
-      /// TODO: Replace with your own actor method.
-      /// </summary>
-      /// <returns></returns>
-      Task<int> GetCountAsync(CancellationToken cancellationToken);
+      Task AddToBasket(Guid productId, int quantity);
 
-      /// <summary>
-      /// TODO: Replace with your own actor method.
-      /// </summary>
-      /// <param name="count"></param>
-      /// <returns></returns>
-      Task SetCountAsync(int count, CancellationToken cancellationToken);
+      Task<Dictionary<Guid, int>> GetBasket();
+
+      Task ClearBasket();
    }
 }

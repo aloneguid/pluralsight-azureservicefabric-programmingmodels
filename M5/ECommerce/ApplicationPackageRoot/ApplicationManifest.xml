@@ -6,6 +6,9 @@
     <Parameter Name="ECommerce.ProductCatalog_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="ECommerce.ProductCatalog_PartitionCount" DefaultValue="1" />
     <Parameter Name="ECommerce.ProductCatalog_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="UserActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="UserActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="UserActorService_TargetReplicaSetSize" DefaultValue="3" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
@@ -38,6 +41,11 @@
     <Service Name="ECommerce.ProductCatalog" ServicePackageActivationMode="ExclusiveProcess">
       <StatefulService ServiceTypeName="ECommerce.ProductCatalogType" TargetReplicaSetSize="[ECommerce.ProductCatalog_TargetReplicaSetSize]" MinReplicaSetSize="[ECommerce.ProductCatalog_MinReplicaSetSize]">
         <UniformInt64Partition PartitionCount="[ECommerce.ProductCatalog_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="UserActorService" GeneratedIdRef="0dc6faf3-92f0-4251-91d9-d3344e9b5a1b|Persisted">
+      <StatefulService ServiceTypeName="UserActorServiceType" TargetReplicaSetSize="[UserActorService_TargetReplicaSetSize]" MinReplicaSetSize="[UserActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[UserActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>
   </DefaultServices>

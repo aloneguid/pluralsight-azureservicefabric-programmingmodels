@@ -31,6 +31,38 @@ namespace UserActor
       {
       }
 
+      public async Task AddToBasket(Guid productId, int quantity)
+      {
+         await StateManager.AddOrUpdateStateAsync(productId.ToString(),
+            quantity,
+            (id, oldQuantity) => oldQuantity + quantity);
+      }
+
+      public async Task ClearBasket()
+      {
+         IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+
+         foreach(string productId in productIDs)
+         {
+            await StateManager.RemoveStateAsync(productId);
+         }
+      }
+
+      public async Task<Dictionary<Guid, int>> GetBasket()
+      {
+         var result = new Dictionary<Guid, int>();
+
+         IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+
+         foreach(string productId in productIDs)
+         {
+            int quantity = await StateManager.GetStateAsync<int>(productId);
+            result[new Guid(productId)] = quantity;
+         }
+
+         return result;
+      }
+
       /// <summary>
       /// This method is called whenever an actor is activated.
       /// An actor is activated the first time any of its methods are invoked.
@@ -39,33 +71,7 @@ namespace UserActor
       {
          ActorEventSource.Current.ActorMessage(this, "Actor activated.");
 
-         // The StateManager is this actor's private state store.
-         // Data stored in the StateManager will be replicated for high-availability for actors that use volatile or persisted state storage.
-         // Any serializable object can be saved in the StateManager.
-         // For more information, see https://aka.ms/servicefabricactorsstateserialization
-
-         return this.StateManager.TryAddStateAsync("count", 0);
-      }
-
-      /// <summary>
-      /// TODO: Replace with your own actor method.
-      /// </summary>
-      /// <returns></returns>
-      Task<int> IUserActor.GetCountAsync(CancellationToken cancellationToken)
-      {
-         return this.StateManager.GetStateAsync<int>("count", cancellationToken);
-      }
-
-      /// <summary>
-      /// TODO: Replace with your own actor method.
-      /// </summary>
-      /// <param name="count"></param>
-      /// <returns></returns>
-      Task IUserActor.SetCountAsync(int count, CancellationToken cancellationToken)
-      {
-         // Requests are not guaranteed to be processed in order nor at most once.
-         // The update function here verifies that the incoming count is greater than the current count to preserve order.
-         return this.StateManager.AddOrUpdateStateAsync("count", count, (key, value) => count > value ? count : value, cancellationToken);
+         return Task.FromResult(true);
       }
    }
 }
