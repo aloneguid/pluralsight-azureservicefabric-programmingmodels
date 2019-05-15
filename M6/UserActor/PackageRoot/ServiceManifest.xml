@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="UserActorPkg" Version="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <ServiceTypes>
+    <StatefulServiceType ServiceTypeName="UserActorServiceType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="0dc6faf3-92f0-4251-91d9-d3344e9b5a1b|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="UserActorService" />
+            <ReplicatorEndpoint Name="UserActorServiceReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="UserActorServiceReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="UserActorServiceReplicatorSecurityConfig" />
+            <StoreConfigSection Name="UserActorServiceLocalStoreConfig" />
+            <ServiceEndpointV2_1 Name="UserActorServiceEndpointV2_1" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+  </ServiceTypes>
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>UserActor.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+  <ConfigPackage Name="Config" Version="1.0.0" />
+  <Resources>
+    <Endpoints>
+      <Endpoint Name="UserActorServiceEndpointV2_1" />
+      <Endpoint Name="UserActorServiceReplicatorEndpoint" />
+      <Endpoint Name="UserActorServiceEndpointV2" />
+    </Endpoints>
+  </Resources>
+  <!-- The content will be generated during build -->
+</ServiceManifest>
