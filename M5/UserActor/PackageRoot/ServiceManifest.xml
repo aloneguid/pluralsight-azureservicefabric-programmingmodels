@@ -28,6 +28,7 @@
     <Endpoints>
       <Endpoint Name="UserActorServiceEndpointV2_1" />
       <Endpoint Name="UserActorServiceReplicatorEndpoint" />
+      <Endpoint Name="UserActorServiceEndpointV2" />
     </Endpoints>
   </Resources>
   <!-- The content will be generated during build -->

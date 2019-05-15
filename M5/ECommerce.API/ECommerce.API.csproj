@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ECommerce.ProductCatalog.Model\ECommerce.ProductCatalog.Model.csproj" />
+    <ProjectReference Include="..\UserActor.Interfaces\UserActor.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

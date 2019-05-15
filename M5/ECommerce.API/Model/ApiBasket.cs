@@ -11,7 +11,7 @@ namespace ECommerce.API.Model
       [JsonProperty("userId")]
       public string UserId { get; set; }
 
-      [JsonProperty("item")]
+      [JsonProperty("items")]
       public ApiBasketItem[] Items { get; set; }
    }
 
