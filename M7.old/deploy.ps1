@@ -2,7 +2,7 @@
     This script is a part of Pluralsight's "Azure Service Fabric Programming Models" course. Module 6.
 #>
 
-$PackageLocation = "C:\dev\pluralsight-azureservicefabric-programmingmodels\M5\ECommerce\pkg\Debug"
+$PackageLocation = "C:\dev\pluralsight-azureservicefabric-programmingmodels\M6\ECommerce\pkg\Debug"
 $ApplicationImagePath = "ECommercePackage"
 $ApplicationTypeName = "ECommerceType"
 $ApplicationInstanceName = "fabric:/MyEcommerceApp"
