@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="ECommerceType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="ECommerce.CheckoutService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ECommerce.CheckoutService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="ECommerce.CheckoutService_TargetReplicaSetSize" DefaultValue="3" />
     <Parameter Name="ECommerce.API_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="ECommerce.API_InstanceCount" DefaultValue="-1" />
     <Parameter Name="ECommerce.ProductCatalog_MinReplicaSetSize" DefaultValue="3" />
@@ -13,6 +16,10 @@
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ECommerce.CheckoutServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="UserActorPkg" ServiceManifestVersion="1.0.0" />
   </ServiceManifestImport>
@@ -33,6 +40,11 @@
          ServiceFabric PowerShell module.
          
          The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="ECommerce.CheckoutService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="ECommerce.CheckoutServiceType" TargetReplicaSetSize="[ECommerce.CheckoutService_TargetReplicaSetSize]" MinReplicaSetSize="[ECommerce.CheckoutService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[ECommerce.CheckoutService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
     <Service Name="ECommerce.API" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="ECommerce.APIType" InstanceCount="[ECommerce.API_InstanceCount]">
         <SingletonPartition />
