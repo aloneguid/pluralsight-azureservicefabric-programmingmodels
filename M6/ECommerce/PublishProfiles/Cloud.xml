@@ -11,7 +11,7 @@
                                     X509Credential="true"
                                     ServerCertThumbprint="0123456789012345678901234567890123456789"
                                     FindType="FindByThumbprint"
-                                    FindValue="9876543210987654321098765432109876543210"
+                                    FindValue="9876583210987658321098765832109876583210"
                                     StoreLocation="CurrentUser"
                                     StoreName="My" />
 
