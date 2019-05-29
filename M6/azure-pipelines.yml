@@ -8,58 +8,62 @@ trigger:
       - master
       - course-update
 
-steps:
+stages:
+- stage: build
+  jobs:
+  - job: 'build and archive'
+  
+    steps:
 
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.2.300'
-  inputs:
-    version: 2.2.300
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core sdk 2.2.300'
+      inputs:
+        version: 2.2.300
 
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 4.4.1'
-  inputs:
-    versionSpec: 4.4.1
+    - task: NuGetToolInstaller@0
+      displayName: 'Use NuGet 4.4.1'
+      inputs:
+        versionSpec: 4.4.1
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: M6/ECommerce.sln
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: M6/ECommerce.sln
 
+    - task: VSBuild@1
+      displayName: 'build solution'
+      inputs:
+        solution: M6/ECommerce.sln
+        platform: x64
+        configuration: release
 
-- task: VSBuild@1
-  displayName: 'build solution'
-  inputs:
-    solution: M6/ECommerce.sln
-    platform: x64
-    configuration: release
+    - task: VSBuild@1
+      displayName: 'build fabric project'
+      inputs:
+        solution: M6/ECommerce/ECommerce.sfproj
+        msbuildArgs: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
+        platform: x64
+        configuration: release
 
-- task: VSBuild@1
-  displayName: 'build fabric project'
-  inputs:
-    solution: M6/ECommerce/ECommerce.sfproj
-    msbuildArgs: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
-    platform: x64
-    configuration: release
+    - task: ServiceFabricUpdateManifests@2
+      displayName: 'Update Service Fabric Manifest Versions'
+      inputs:
+        applicationPackagePath: '$(build.artifactstagingdirectory)\pkg'
+        versionSuffix: '.$(build.buildnumber)'
 
-- task: ServiceFabricUpdateManifests@2
-  displayName: 'Update Service Fabric Manifest Versions'
-  inputs:
-    applicationPackagePath: '$(build.artifactstagingdirectory)\pkg'
-    versionSuffix: '.$(build.buildnumber)'
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(build.artifactstagingdirectory)\projectartifacts'
+      inputs:
+        SourceFolder: '$(system.defaultworkingdirectory)'
+        Contents: |
+        M6\**\PublishProfiles\*.xml
+        M6\**\ApplicationParameters\*.xml
+        TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
+      condition: succeededOrFailed()
 
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)\projectartifacts'
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: |
-     M6\**\PublishProfiles\*.xml
-     M6\**\ApplicationParameters\*.xml
-    TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
-  condition: succeededOrFailed()
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-  condition: succeededOrFailed()
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+      condition: succeededOrFailed()
 
