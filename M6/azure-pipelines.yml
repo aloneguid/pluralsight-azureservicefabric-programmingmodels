@@ -1,6 +1,3 @@
-pool:
-  vmImage: 'windows-2019'
-
 trigger:
   batch: true
   branches:
@@ -12,6 +9,8 @@ stages:
 - stage: build
   jobs:
   - job: 'build and archive'
+    pool:
+      vmImage: 'windows-2019'
 
     steps:
 
