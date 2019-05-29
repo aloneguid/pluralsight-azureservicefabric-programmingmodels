@@ -52,8 +52,8 @@ steps:
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: |
-     **\PublishProfiles\*.xml
-     **\ApplicationParameters\*.xml
+     M6\**\PublishProfiles\*.xml
+     M6\**\ApplicationParameters\*.xml
     TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
   condition: succeededOrFailed()
 
