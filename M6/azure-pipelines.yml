@@ -8,7 +8,7 @@ trigger:
 stages:
 - stage: build
   jobs:
-  - job: 'build and archive'
+  - job: buildAndArchive
     pool:
       vmImage: 'windows-2019'
 
