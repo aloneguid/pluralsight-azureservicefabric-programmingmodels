@@ -45,3 +45,10 @@ steps:
      **\ApplicationParameters\*.xml
     TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
   condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+
