@@ -77,7 +77,7 @@ stages:
         deploy:
           steps:
           - task: DownloadPipelineArtifact@1
-              inputs:
-                buildType: 'current'
-                artifactName: 'drop'
-                targetPath: '$(System.ArtifactsDirectory)'
+            inputs:
+              buildType: 'current'
+              artifactName: 'drop'
+              targetPath: '$(System.ArtifactsDirectory)'
