@@ -26,8 +26,22 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: M6/ECommerce/ECommerce.sfproj
-    arguments: '-c release /t:Package /p:PackageLocation=$(build.artifactstagingdirectory)'
+    arguments: '-c release /t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
     configuration: release
     platform: x64
 
+- task: ServiceFabricUpdateManifests@2
+  displayName: 'Update Service Fabric Manifests (Manifest versions)'
+  inputs:
+    applicationPackagePath: '$(build.artifactstagingdirectory)\pkg'
+    versionSuffix: '.$(build.buildnumber)'
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)\projectartifacts'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: |
+     **\PublishProfiles\*.xml
+     **\ApplicationParameters\*.xml
+    TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
+  condition: succeededOrFailed()
