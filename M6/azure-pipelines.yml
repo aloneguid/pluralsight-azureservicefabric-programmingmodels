@@ -20,7 +20,6 @@ steps:
   inputs:
     projects: M6/ECommerce.sln
     configuration: release
-    platform: x64
 
 - task: DotNetCoreCLI@2
   displayName: 'build and package SF project'
@@ -28,7 +27,6 @@ steps:
     projects: M6/ECommerce/ECommerce.sfproj
     arguments: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
     configuration: release
-    platform: x64
 
 - task: ServiceFabricUpdateManifests@2
   displayName: 'Update Service Fabric Manifest Versions'
