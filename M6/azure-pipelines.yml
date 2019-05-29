@@ -15,15 +15,26 @@ steps:
   inputs:
     version: 2.2.300
 
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.4.1'
+  inputs:
+    versionSpec: 4.4.1
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: M6/ECommerce.sln
+
+
 - task: VSBuild@1
-  displayName: 'Build solution **\*.sln'
+  displayName: 'build solution'
   inputs:
     solution: M6/ECommerce.sln
     platform: x64
     configuration: release
 
 - task: VSBuild@1
-  displayName: 'Build solution **\*.sfproj'
+  displayName: 'build fabric project'
   inputs:
     solution: M6/ECommerce/ECommerce.sfproj
     msbuildArgs: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
