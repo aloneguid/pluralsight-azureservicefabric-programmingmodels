@@ -66,3 +66,18 @@ stages:
         PathtoPublish: '$(build.artifactstagingdirectory)'
       condition: succeededOrFailed()
 
+- stage: deploy
+  jobs:
+  - job: buildAndArchive
+    pool:
+      vmImage: 'windows-2019'
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@1
+              inputs:
+                buildType: 'current'
+                artifactName: 'drop'
+                targetPath: '$(System.ArtifactsDirectory)'
