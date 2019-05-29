@@ -68,7 +68,7 @@ stages:
 
 - stage: deploy
   jobs:
-  - job: buildAndArchive
+  - deployment: deployToSF
     pool:
       vmImage: 'windows-2019'
     environment: dev
