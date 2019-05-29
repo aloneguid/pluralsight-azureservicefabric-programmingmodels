@@ -19,6 +19,15 @@ steps:
   displayName: 'dotnet build'
   inputs:
     projects: M6/ECommerce.sln
-    arguments: '-c release /t:Publish'
+    configuration: release
+    platform: x64
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: M6/ECommerce/ECommerce.sfproj
+    arguments: '-c release /t:Package /p:PackageLocation=$(build.artifactstagingdirectory)'
+    configuration: release
+    platform: x64
 
 
