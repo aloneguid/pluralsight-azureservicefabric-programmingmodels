@@ -16,22 +16,22 @@ steps:
     version: 2.2.300
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
+  displayName: 'build solution'
   inputs:
     projects: M6/ECommerce.sln
     configuration: release
     platform: x64
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
+  displayName: 'build and package SF project'
   inputs:
     projects: M6/ECommerce/ECommerce.sfproj
-    arguments: '-c release /t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
+    arguments: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
     configuration: release
     platform: x64
 
 - task: ServiceFabricUpdateManifests@2
-  displayName: 'Update Service Fabric Manifests (Manifest versions)'
+  displayName: 'Update Service Fabric Manifest Versions'
   inputs:
     applicationPackagePath: '$(build.artifactstagingdirectory)\pkg'
     versionSuffix: '.$(build.buildnumber)'
