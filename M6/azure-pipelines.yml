@@ -6,6 +6,7 @@ trigger:
       - course-update
 
 stages:
+
 - stage: Build
   jobs:
   - job: Build
@@ -87,6 +88,7 @@ stages:
               applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
               serviceConnectionName: PS1
               publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/PublishProfiles/Cloud.xml'
+              applicationParameterPath: '$(System.ArtifactsDirectory)/drop/publishprofiles/ApplicationParameters/Cloud.xml'
               compressPackage: true
               skipUpgradeSameTypeAndVersion: true
               useDiffPackage: true
