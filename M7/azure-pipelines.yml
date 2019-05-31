@@ -1,0 +1,92 @@
+trigger:
+  batch: false
+  branches:
+    include:
+      - master
+      - course-update
+
+stages:
+
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'windows-2019'
+
+    steps:
+
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core sdk 2.2.300'
+      inputs:
+        version: 2.2.300
+
+    - task: NuGetToolInstaller@0
+      displayName: 'Use NuGet 4.4.1'
+      inputs:
+        versionSpec: 4.4.1
+
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: M6/ECommerce.sln
+
+    - task: VSBuild@1
+      displayName: 'build solution'
+      inputs:
+        solution: M6/ECommerce.sln
+        platform: x64
+        configuration: release
+
+    - task: VSBuild@1
+      displayName: 'build fabric project'
+      inputs:
+        solution: M6/ECommerce/ECommerce.sfproj
+        msbuildArgs: '/t:Package /p:PackageLocation=$(build.artifactstagingdirectory)\pkg'
+        platform: x64
+        configuration: release
+
+    - task: ServiceFabricUpdateManifests@2
+      displayName: 'Update Service Fabric Manifest Versions'
+      inputs:
+        applicationPackagePath: '$(build.artifactstagingdirectory)\pkg'
+        versionSuffix: '.$(build.buildnumber)'
+
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+      inputs:
+        SourceFolder: '$(system.defaultworkingdirectory)\M6\ECommerce'
+        Contents: |
+          PublishProfiles\*.xml
+          ApplicationParameters\*.xml
+        TargetFolder: '$(build.artifactstagingdirectory)'
+      condition: succeededOrFailed()
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+      condition: succeededOrFailed()
+
+- stage: Deploy
+  jobs:
+  - deployment: TestCluster
+    pool:
+      vmImage: 'windows-2019'
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: 'current'
+              artifactName: 'drop'
+              targetPath: '$(System.ArtifactsDirectory)'
+          - task: ServiceFabricDeploy@1
+            displayName: 'Deploy Service Fabric Application'
+            inputs:
+              applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
+              serviceConnectionName: PS1
+              publishProfilePath: '$(System.ArtifactsDirectory)/drop/PublishProfiles/Cloud.xml'
+              applicationParameterPath: '$(System.ArtifactsDirectory)/drop/ApplicationParameters/Cloud.xml'
+              compressPackage: true
