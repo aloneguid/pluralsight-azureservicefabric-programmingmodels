@@ -86,7 +86,7 @@ stages:
             inputs:
               applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
               serviceConnectionName: PS1
-              publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/M6/ECommerce/PublishProfiles/Cloud.xml'
+              publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/PublishProfiles/Cloud.xml'
               compressPackage: true
               skipUpgradeSameTypeAndVersion: true
               useDiffPackage: true
