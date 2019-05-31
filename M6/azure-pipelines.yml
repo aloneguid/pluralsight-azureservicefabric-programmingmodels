@@ -81,12 +81,12 @@ stages:
               buildType: 'current'
               artifactName: 'drop'
               targetPath: '$(System.ArtifactsDirectory)'
-#          - task: ServiceFabricDeploy@1
-#            displayName: 'Deploy Service Fabric Application'
-#            inputs:
-#              applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
-#              serviceConnectionName: PS1
-#              publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/M6/ECommerce/PublishProfiles/Cloud.xml'
-#              compressPackage: true
-#              skipUpgradeSameTypeAndVersion: true
-#              useDiffPackage: true
+          - task: ServiceFabricDeploy@1
+            displayName: 'Deploy Service Fabric Application'
+            inputs:
+              applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
+              serviceConnectionName: PS1
+              publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/M6/ECommerce/PublishProfiles/Cloud.xml'
+              compressPackage: true
+              skipUpgradeSameTypeAndVersion: true
+              useDiffPackage: true
