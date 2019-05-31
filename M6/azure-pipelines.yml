@@ -52,13 +52,13 @@ stages:
         versionSuffix: '.$(build.buildnumber)'
 
     - task: CopyFiles@2
-      displayName: 'Copy Files to: $(build.artifactstagingdirectory)\projectartifacts'
+      displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
       inputs:
         SourceFolder: '$(system.defaultworkingdirectory)\M6\ECommerce'
         Contents: |
           PublishProfiles\*.xml
           ApplicationParameters\*.xml
-        TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
+        TargetFolder: '$(build.artifactstagingdirectory)'
       condition: succeededOrFailed()
 
     - task: PublishBuildArtifacts@1
@@ -87,8 +87,8 @@ stages:
             inputs:
               applicationPackagePath: '$(System.ArtifactsDirectory)/drop/pkg'
               serviceConnectionName: PS1
-              publishProfilePath: '$(System.ArtifactsDirectory)/drop/publishprofiles/PublishProfiles/Cloud.xml'
-              applicationParameterPath: '$(System.ArtifactsDirectory)/drop/publishprofiles/ApplicationParameters/Cloud.xml'
+              publishProfilePath: '$(System.ArtifactsDirectory)/drop/PublishProfiles/Cloud.xml'
+              applicationParameterPath: '$(System.ArtifactsDirectory)/drop/ApplicationParameters/Cloud.xml'
               compressPackage: true
               skipUpgradeSameTypeAndVersion: true
               useDiffPackage: true
