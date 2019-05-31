@@ -53,10 +53,10 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)\projectartifacts'
       inputs:
-        SourceFolder: '$(system.defaultworkingdirectory)'
+        SourceFolder: '$(system.defaultworkingdirectory)\M6\ECommerce'
         Contents: |
-          M6\**\PublishProfiles\*.xml
-          M6\**\ApplicationParameters\*.xml
+          PublishProfiles\*.xml
+          ApplicationParameters\*.xml
         TargetFolder: '$(build.artifactstagingdirectory)\publishprofiles'
       condition: succeededOrFailed()
 
