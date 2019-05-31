@@ -76,7 +76,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: DownloadBuildArtifact@1
+          - task: DownloadBuildArtifacts@2
             inputs:
               buildType: 'current'
               artifactName: 'drop'
