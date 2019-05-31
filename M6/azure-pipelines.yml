@@ -6,9 +6,9 @@ trigger:
       - course-update
 
 stages:
-- stage: build
+- stage: Build
   jobs:
-  - job: build
+  - job: Build
     pool:
       vmImage: 'windows-2019'
 
@@ -66,9 +66,9 @@ stages:
         PathtoPublish: '$(build.artifactstagingdirectory)'
       condition: succeededOrFailed()
 
-- stage: deploy
+- stage: Deploy
   jobs:
-  - deployment: deployToSF
+  - deployment: TestCluster
     pool:
       vmImage: 'windows-2019'
     environment: dev
