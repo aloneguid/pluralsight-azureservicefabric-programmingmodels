@@ -90,5 +90,3 @@ stages:
               publishProfilePath: '$(System.ArtifactsDirectory)/drop/PublishProfiles/Cloud.xml'
               applicationParameterPath: '$(System.ArtifactsDirectory)/drop/ApplicationParameters/Cloud.xml'
               compressPackage: true
-              skipUpgradeSameTypeAndVersion: true
-              useDiffPackage: true
