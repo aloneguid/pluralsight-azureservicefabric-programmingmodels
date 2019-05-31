@@ -76,11 +76,11 @@ stages:
       runOnce:
         deploy:
           steps:
-          #- task: DownloadBuildArtifacts@0
-          #  inputs:
-          #    buildType: 'current'
-          #    artifactName: 'drop'
-          #    targetPath: '$(System.ArtifactsDirectory)'
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              buildType: 'current'
+              artifactName: 'drop'
+              targetPath: '$(System.ArtifactsDirectory)'
           - task: ServiceFabricDeploy@1
             displayName: 'Deploy Service Fabric Application'
             inputs:
