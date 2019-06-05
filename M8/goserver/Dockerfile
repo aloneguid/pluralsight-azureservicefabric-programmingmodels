@@ -10,7 +10,7 @@ RUN dir
 WORKDIR /app
 RUN dir
 
-FROM mcr.microsoft.com/windows/nanoserver:1809
+FROM mcr.microsoft.com/windows/nanoserver:1803
 EXPOSE 8000
 WORKDIR /app
 RUN dir
