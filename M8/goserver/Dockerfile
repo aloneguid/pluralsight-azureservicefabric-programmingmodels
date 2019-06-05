@@ -5,6 +5,7 @@ RUN dir
 RUN go get -d
 RUN dir
 RUN go build -a -o /app/app.exe .
+COPY src/index.html /app/
 RUN dir
 WORKDIR /app
 RUN dir

@@ -111,13 +111,13 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Println("Listening - open http://localhost:8090/ in browser")
+	log.Println("Listening - open http://localhost:8000/ in browser")
 	defer log.Println("Exiting")
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/pic", pic)
 
-	err := http.ListenAndServe(":8090", nil)
+	err := http.ListenAndServe(":8000", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

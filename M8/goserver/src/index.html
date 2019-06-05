@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>{{.Title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+        var mx = 0.0;
+        var my = 0.0;
+        var radius = 2.0;
+        function zoomAt(width, height, x, y) {
+            var pixelSize = (radius * 2) / 640;
+            var viewHeight = (height / width) * (radius * 2);
+	        var left = (mx - radius) + (pixelSize / 2);
+	        var top = (my - (viewHeight / 2)) + (pixelSize / 2);
+	        mx = left + x * pixelSize;
+	        my = top + y * pixelSize;
+	        radius = radius / 4.0;
+        }
+	</script>
+</head>
+<body>
+    <h1>{{.Title}}</h1>
+    <p>Click image to zoom. Reload page to restart.</p>
+    <div>
+        <image id="pic" src="/pic" width="{{.Width}}px" height="{{.Height}}px" />
+    </div>
+
+	<script>
+        var pic = document.getElementById("pic");
+        pic.addEventListener("click", function(e) {
+            zoomAt(pic.width, pic.height, e.offsetX, e.offsetY)
+            pic.src = "/pic?mx=" + mx + "&my=" + my + "&radius=" + radius;
+        });
+	</script>
+</body>
+</html>
