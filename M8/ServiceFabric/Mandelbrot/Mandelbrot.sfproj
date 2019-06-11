@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.8\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.8\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>8c71ca1d-cb75-44e3-9f4d-8d09b740c037</ProjectGuid>
+    <ProjectGuid>af6b5817-fdfd-4d63-b1b8-2a524957e7cb</ProjectGuid>
     <ProjectVersion>2.5</ProjectVersion>
     <MinToolsVersion>1.5</MinToolsVersion>
     <SupportedMSBuildNuGetPackageVersion>1.6.8</SupportedMSBuildNuGetPackageVersion>
@@ -29,8 +29,8 @@
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationPackageRoot\mbrotPkg\Config\Settings.xml" />
-    <Content Include="ApplicationPackageRoot\mbrotPkg\ServiceManifest.xml" />
+    <Content Include="ApplicationPackageRoot\mandelbrotPkg\Config\Settings.xml" />
+    <Content Include="ApplicationPackageRoot\mandelbrotPkg\ServiceManifest.xml" />
     <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

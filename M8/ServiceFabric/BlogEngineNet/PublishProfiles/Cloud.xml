@@ -23,7 +23,4 @@
   <ClusterConnectionParameters ConnectionEndpoint="pscontainers.northeurope.cloudapp.azure.com:19000" X509Credential="true" ServerCertThumbprint="EFB8FF74D6CD842A278E1ACEE5355C60014CF45F" FindType="FindByThumbprint" FindValue="EFB8FF74D6CD842A278E1ACEE5355C60014CF45F" StoreLocation="CurrentUser" StoreName="My" />
   <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
   <CopyPackageParameters CompressPackage="true" />
-  <UpgradeDeployment Mode="UnmonitoredAuto">
-    <Parameters Force="True" ForceRestart="True" />
-  </UpgradeDeployment>
 </PublishProfile>
